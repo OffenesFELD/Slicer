@@ -99,11 +99,12 @@ public class PixelSlicer {
     shape.disableStyle();
 
     c.beginDraw();
-    c.background(0);
 
     c.noLights();
     c.translate(c.width * 0.5f, c.height * 0.5f, 0);
     c.scale(scale);
+    c.background(0);
+
     c.noStroke();
 
 
