@@ -57,10 +57,10 @@ public class PathSlicer {
    * @param theIndex
    * @return a list of 2D paths
    */
-  public List<ContourPath> sliceNumber(int theIndex) {
+  public ArrayList<ContourPath> sliceNumber(int theIndex) {
     float y = PApplet.map(slices, 0, slices - 1, -box.height * 0.5f, box.height * 0.5f);
 
-    return sliceAtY(y);
+    return new ArrayList<ContourPath>(sliceAtY(y));
   }
 
 
@@ -70,18 +70,19 @@ public class PathSlicer {
    * @param theY
    * @return a list of 2D paths
    */
-  public List<ContourPath> sliceAtY(float theY) {
+  public ArrayList<ContourPath> sliceAtY(float theY) {
     List<LineSegment2D> segments = sliceFacesWithPlane(faces, theY);
     RectangleBoundsClipper clipper = new RectangleBoundsClipper(rect);
 
-    return mergeSegmentsToPaths(clipper.clip(segments));
+
+    return new ArrayList<ContourPath>(mergeSegmentsToPaths(clipper.clip(segments)));
   }
 
 
-  public List<LineSegment2D> sliceSegmentsNumber(int theIndex) {
+  public ArrayList<LineSegment2D> sliceSegmentsNumber(int theIndex) {
     float y = PApplet.map(slices, 0, slices - 1, -box.height * 0.5f, box.height * 0.5f);
 
-    return sliceSegmentsAtY(y);
+    return new ArrayList<LineSegment2D>(sliceSegmentsAtY(y));
   }
 
 
@@ -93,8 +94,8 @@ public class PathSlicer {
    * @param theY
    * @return a list of 2D paths
    */
-  public List<LineSegment2D> sliceSegmentsAtY(float theY) {
-    return sliceFacesWithPlane(faces, theY);
+  public ArrayList<LineSegment2D> sliceSegmentsAtY(float theY) {
+    return new ArrayList<LineSegment2D>(sliceFacesWithPlane(faces, theY));
   }
 
 
