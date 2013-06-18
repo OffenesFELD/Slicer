@@ -35,7 +35,7 @@ import is.feld.slicer.Slicer;
 import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PShape;
-import processing.pdf.PGraphicsPDF;
+
 
 import java.util.List;
 
@@ -119,10 +119,7 @@ public class SimpleTest extends PApplet {
     stroke(255, 0, 255);
     translate(width * 0.5f, height * 0.5f);
 
-    if(record) {
-      beginRecord(PDF, "recoro.pdf");
-      println("Recording");
-    }
+
 
     rect(0, 0, 100, 100);
 
@@ -131,20 +128,6 @@ public class SimpleTest extends PApplet {
       stroke(random(255), random(255), random(255));
       path.draw(this);
     }
-
-    if(record) {
-      println("Endrecording");
-      endRecord();
-      record = false;
-    }
-
-  }
-
-
-  @Override
-  public void keyPressed() {
-
-    record = true;
   }
 
 
