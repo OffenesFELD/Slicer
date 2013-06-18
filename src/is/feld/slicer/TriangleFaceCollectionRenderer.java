@@ -135,20 +135,26 @@ public class TriangleFaceCollectionRenderer extends PGraphics {
 
   @Override
   public void vertex(float x, float y, float z) {
-    float vertex[] = vertices[vertexCount];
 
-    vertex[X] = x;  // we just need the vertex coordinates
-    vertex[Y] = y;
-    vertex[Z] = z;
 
-    vertexCount++;
+    if(!stroke && fill) {
+      float vertex[] = vertices[vertexCount];
 
-    if ((shape == LINES) && (vertexCount == 2)) {
-      // storeLine(0, 1); // do nothing
-      vertexCount = 0;    // reset counter
-    } else if ((shape == TRIANGLES) && (vertexCount == 3)) {
-      storeTriangle(0, 1, 2);
-      vertexCount = 0;    // reset counter
+      vertex[X] = x;  // we just need the vertex coordinates
+      vertex[Y] = y;
+      vertex[Z] = z;
+
+      vertexCount++;
+
+      if ((shape == LINES) && (vertexCount == 2)) {
+        // storeLine(0, 1); // do nothing
+        vertexCount = 0;    // reset counter
+      } else if ((shape == TRIANGLES) && (vertexCount == 3)) {
+        storeTriangle(0, 1, 2);
+        vertexCount = 0;    // reset counter
+      }
+    }  else {
+      vertexCount = 0;
     }
   }
 
