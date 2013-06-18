@@ -27,10 +27,7 @@
 
 package is.feld.slicer;
 
-import processing.core.PApplet;
-import processing.core.PConstants;
-import processing.core.PGraphics;
-import processing.core.PMatrix;
+import processing.core.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -188,6 +185,31 @@ public class Slicer {
 
   public List<TriangleFace> faces() {
     return new ArrayList<TriangleFace>(faces);
+  }
+
+
+  public PShape pathsToShape(List<ContourPath> thePaths) {
+    PShape group = parent.createShape(PConstants.GROUP);
+
+    for(ContourPath path:thePaths) {
+      PShape pathShape = parent.createShape();
+
+      pathShape.beginShape();
+
+      for(Point2D point: path.points()) {
+        pathShape.vertex(point.x, point.y);
+      }
+
+      if(path.closed) {
+        pathShape.endShape(PConstants.CLOSE);
+      } else {
+        pathShape.endShape();
+      }
+
+      group.addChild(pathShape);
+    }
+
+    return group;
   }
 
 

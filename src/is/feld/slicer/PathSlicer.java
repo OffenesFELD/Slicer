@@ -58,7 +58,7 @@ public class PathSlicer {
    * @return a list of 2D paths
    */
   public ArrayList<ContourPath> sliceNumber(int theIndex) {
-    float y = PApplet.map(slices, 0, slices - 1, -box.height * 0.5f, box.height * 0.5f);
+    float y = PApplet.map(theIndex, 0, slices - 1, -box.height * 0.5f, box.height * 0.5f);
 
     return new ArrayList<ContourPath>(sliceAtY(y));
   }
