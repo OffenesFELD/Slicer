@@ -79,7 +79,6 @@ public class SimpleTest extends PApplet {
     //stroke(255);
 
     scale(0.1f);
-    shape.disableStyle();
     shape(shape);
     fill(255);
     //box(200);
